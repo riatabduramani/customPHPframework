@@ -1,0 +1,30 @@
+{
+    "name": "lati/app",
+    "description": "This is custom project for my purposes",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Riat Abduramani",
+            "email": "riat.abduramani@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Customproject\\": "application/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "7"
+    },
+    "require": {
+        "vlucas/phpdotenv": "^2.5",
+        "twig/twig": "^2.0",
+        "nikic/fast-route": "^1.3",
+        "php-di/php-di": "^6.0"
+    }
+}
