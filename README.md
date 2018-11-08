@@ -1,2 +1,2 @@
-# customframework
-This is custom framework for my projects
+# customPHPframework
+This is custom PHP framework for my projects
