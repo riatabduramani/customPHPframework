@@ -1,7 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: dev1
+ * Created by Riat Abduramani.
  * Date: 11/1/2018
  * Time: 4:12 PM
  */
