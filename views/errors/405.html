@@ -1,10 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ title }}</title>
-</head>
-<body>
-<h1 style="text-align: center;">{{ text }}</h1>
-</body>
-</html>
+{% extends "layouts/base.html" %}
+
+{% block title %} {{title}} - {{ env.app_name }}{% endblock %}
+{% block head %}
+{{ parent() }}
+{% endblock %}
+{% block content %}
+<main role="main" class="container">
+
+    <div class="text-center pt-lg-5">
+        <h1>{{ text }}</h1>
+    </div>
+
+</main><!-- /.container -->
+
+{% endblock %}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% block head %}
+    <title>{% block title %}{% endblock %}</title>
+    {% endblock %}
+
+    <link rel="stylesheet" href="/public/assets/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/public/assets/css/style.css" />
+    {% block headCss %}{% endblock %}
+</head>
+<body>
+<div id="content">{% block content %}{% endblock %}</div>
+<footer class="text-center">
+    {% block footer %}
+    &copy; Copyright {{ "now"|date('Y') }} by <a href="{{ env.app_url }}">{{ env.app_name }}</a>.
+    {% endblock %}
+    <script src="/public/assets/js/jquery-3.3.1.min.js"></script>
+    <script src="/public/assets/bootstrap/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    {% block footerJs %}{% endblock %}
+</footer>
+</body>
+</html>

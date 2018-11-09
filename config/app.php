@@ -8,11 +8,11 @@
 return [
 
     //Write your application name
-    'app_name'  =>  $_ENV['APP_NAME'],
+    'app_name'  =>  getenv('APP_NAME'),
 
     //App is on production mode or in development
-    'app_live' => $_ENV['APP_LIVE'],
+    'app_live' => getenv('APP_LIVE'),
 
     //Application main url
-    'app_url'   =>  $_ENV['APP_URL']
+    'app_url'   =>  getenv('APP_URL')
 ];

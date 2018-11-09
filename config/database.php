@@ -10,13 +10,13 @@ return [
     'connections' => [
 
         'mysql' => [
-            'driver'     =>  $_ENV['DB_CONNECTION'],
-            'host'       =>  $_ENV['DB_HOST'],
-            'user'       =>  $_ENV['DB_USERNAME'],
-            'password'   =>  $_ENV['DB_PASSWORD'],
-            'database'   =>  $_ENV['DB_DATABASE'],
-            'port'       =>  $_ENV['DB_PORT'],
-            'prefix'     =>  $_ENV['DB_PREFIX']
+            'driver'     =>  getenv('DB_CONNECTION'),
+            'host'       =>  getenv('DB_HOST'),
+            'user'       =>  getenv('DB_USERNAME'),
+            'password'   =>  getenv('DB_PASSWORD'),
+            'database'   =>  getenv('DB_DATABASE'),
+            'port'       =>  getenv('DB_PORT'),
+            'prefix'     =>  getenv('DB_PREFIX')
         ],
 
     ]

@@ -1,10 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ title }}</title>
-</head>
-<body>
-<h1 style="text-align: center; margin: auto; padding: 50px">{{ text }}</h1>
-</body>
-</html>
+{% extends "layouts/base.html" %}
+
+{% block title %} {{title}} - {{ env.app_name }}{% endblock %}
+{% block head %}
+{{ parent() }}
+<style type="text/css">
+    .important { color: #336699; }
+</style>
+{% endblock %}
+{% block content %}
+<main role="main" class="container">
+
+    <div class="text-center pt-lg-5">
+        <h1>{{ text }}</h1>
+        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+    </div>
+
+</main><!-- /.container -->
+
+{% endblock %}

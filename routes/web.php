@@ -21,8 +21,13 @@ $container = $containerBuilder->build();
 
 //list your app routes here
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
-    $r->addRoute('GET', '/users', ['Customproject\Application\Controllers\User','users']);
-    $r->addRoute('GET', '/', ['Customproject\Application\Controllers\Home','welcome']);
+
+    $r->get('/', ['Customproject\Application\Controllers\Home','welcome']);
+    $r->get('/home', ['Customproject\Application\Controllers\Home','welcome']);
+
+    $r->addGroup('/admin', function (FastRoute\RouteCollector $r) {
+        $r->get('/users', ['Customproject\Application\Controllers\User','users']);
+    });
 });
 
 
