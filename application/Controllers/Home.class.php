@@ -5,10 +5,14 @@
  * Time: 9:02 AM
  */
 
-namespace Customproject\Controllers;
+namespace Customproject\Application\Controllers;
 
+use Customproject\Application\Main;
 
-class Home
+class Home extends Main
 {
-
+    public function welcome()
+    {
+        return $this->view('welcome.html',['title'=>'Welcome', 'text'=>'Welcome to customPHPframework']);
+    }
 }
