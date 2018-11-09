@@ -1,5 +1,5 @@
 # customPHPframework
-This is custom PHP framework for my small projects. I decided to do this simple framework after the good experience with Laravel. The structure is based somehow as Laravel, but in deep it changes.
+This is custom PHP framework for my small projects. I decided to do this simple framework after I had to create projects for startups, they need to run quickly and faster.
 
 # Contributing
 Thank you for considering contributing to this project! So let us build the beauty.
