@@ -4,20 +4,23 @@
  * Date: 11/7/2018
  * Time: 12:28 PM
  */
-use Customproject\Backbone\Router as Route;
-/*
-Route::get('/test', 'HelloRoute');
-Route::get('/urls/2/lati', function () {
-    echo "This is something else";
-});*/
 
-use Customproject\Application\Controllers\User;
-$user = new User();
-$get_all_users_handler = $user->users();
+use DI\ContainerBuilder;
+$containerBuilder = new ContainerBuilder;
 
+if(!file_exists(PROJECT_ROOT."/cache/DI/CompiledContainer.php") && $app['app_live'] == 'false') {
+    $containerBuilder->enableCompilation(PROJECT_ROOT . '/cache/DI/');
+} elseif($app['app_live'] == 'true' && file_exists(PROJECT_ROOT."/cache/DI/CompiledContainer.php")) {
+    unlink(PROJECT_ROOT."/cache/DI/CompiledContainer.php");
+    $containerBuilder->enableCompilation(PROJECT_ROOT . '/cache/DI/');
+} elseif($app['app_live'] == 'true' && !file_exists(PROJECT_ROOT."/cache/DI/CompiledContainer.php")) {
+    $containerBuilder->enableCompilation(PROJECT_ROOT . '/cache/DI/');
+}
+
+$container = $containerBuilder->build();
 
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
-    $r->addRoute('GET', '/users', 'Customproject\\Application\\Controllers\\User/users');
+    $r->addRoute('GET', '/users', ['Customproject\Application\Controllers\User','users']);
 });
 
 
@@ -29,9 +32,11 @@ $uri = $_SERVER['REQUEST_URI'];
 if (false !== $pos = strpos($uri, '?')) {
     $uri = substr($uri, 0, $pos);
 }
+
 $uri = rawurldecode($uri);
 
 $routeInfo = $dispatcher->dispatch($httpMethod, $uri);
+
 switch ($routeInfo[0]) {
     case FastRoute\Dispatcher::NOT_FOUND:
         echo "404 not found";
@@ -42,10 +47,8 @@ switch ($routeInfo[0]) {
         echo "405 Method Not Allowed";
         break;
     case FastRoute\Dispatcher::FOUND:
-        $handler = $routeInfo[1];
-        $vars = $routeInfo[2];
-        // ... call $handler with $vars
-        list($class, $method) = explode("/", $handler);
-        call_user_func_array(array(new $class, $method), $vars);
+        $controller = $routeInfo[1];
+        $parameters  = $routeInfo[2];
+        echo $container->call($controller, $parameters);
         break;
 }

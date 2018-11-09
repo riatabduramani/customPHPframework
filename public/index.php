@@ -7,5 +7,3 @@
 
 // Run the application motor
 include('../bootstrap/run.php');
-
-

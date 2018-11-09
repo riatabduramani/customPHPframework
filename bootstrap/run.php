@@ -10,10 +10,6 @@ DEFINE('PROJECT_ROOT', dirname(dirname(__FILE__)));
 
 include(PROJECT_ROOT.'/vendor/autoload.php');
 
-//Custom functions needed for the development of the application
-include(PROJECT_ROOT.'/bootstrap/functions.php');
-include(PROJECT_ROOT.'/routes/web.php');
-
 /*
  * We use here the .env files, to call the library which helps us to convert environment file into global $_ENV
  * So the idea is to make a configuration file, so the users can define easy the application config values
@@ -21,6 +17,9 @@ include(PROJECT_ROOT.'/routes/web.php');
 use Dotenv\Dotenv;
 $dotenv = new Dotenv(PROJECT_ROOT);
 $dotenv->load();
+
+//Custom functions needed for the development of the application
+include(PROJECT_ROOT.'/bootstrap/functions.php');
 
 /* Including the configuration files from directory "config", the files only return array
  * This code will call every file which is inside the config "directory"
@@ -37,9 +36,9 @@ foreach($dir as $key => $file) {
          * The function "removeExtension" is used to remove the .php extension
          * and to generate a variable
         */
-        ${removeExtension($file,'php')} = include PROJECT_ROOT.'/config/'.$file;
+        ${removeExtension($file)} = include PROJECT_ROOT.'/config/'.$file;
     }
 }
 
-
-
+//Including the routing engine
+include(PROJECT_ROOT.'/routes/web.php');
